@@ -101,7 +101,7 @@ def find_similar(review):
   return reviews.loc[similar_idx]['reviewerID'], reviews.loc[similar_idx]['reviewText'], jaccard_sim[similar_idx]
 
 if __name__=='__main__':
-    reviews_dataset = pd.read_json('/content/drive/My Drive/ESE545 Projects/Project1/amazonReviews.json',lines=True)
+    reviews_dataset = pd.read_json('amazonReviews.json',lines=True)
     reviews = reviews_dataset[['reviewerID','reviewText']]
     
     stopwords_str = 'i me my myself we our ours ourselves you your yours yourself yourselves he him his himself she her hers herself it its \
