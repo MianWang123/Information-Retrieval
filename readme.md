@@ -2,7 +2,7 @@
 
 Information Retrieval (Locally Sensitive Hashing)
 
-## Goal and Function
+### Goal and Function
 
 The goal is to find similar pairs of reviews in the AmazonReviews dataset(108 Mb), also given any new review, this code will find the most similar one in the database.  
 
