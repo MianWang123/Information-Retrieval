@@ -6,7 +6,7 @@ Information Retrieval (Locally Sensitive Hashing)
 
 The goal is to find similar pairs of reviews in the AmazonReviews dataset(108 Mb), also given any new review, this code will find the most similar one in the database.  
 
-The process involves data preprocess (get rid of stopwords and punctuations), K-shingles of reviews (K=5), locally sensitive hashing (m times permutation & min-hashing & divided by b bands), compute Jaccard distance (1 - Jaccard similarity), and find similar pairs of reviews.
+The process involves data preprocess (get rid of stopwords and punctuations), K-shingling of reviews (K=5), locally sensitive hashing (m times permutation & min-hashing & divided by b bands), compute Jaccard distance (1 - Jaccard similarity), and find similar pairs of reviews.
 
 ## Getting Started
 
