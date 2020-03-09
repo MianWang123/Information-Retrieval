@@ -22,11 +22,11 @@ The dataset can be found here https://drive.google.com/file/d/1UMAL2OULAEpdhlSUS
 ## Data Visualization
 
 For Step 4, I draw the distribution(histogram) of 10000 pairs of reviews' Jaccard distance.  
-![pics](Jaccard distance of 10000 pairs.png)
+![Image](http://github.com/MianWang123/Information-Retrieval/pics/Jaccard distance of 10000 pairs.png)
 For Step 5, I draw the graph of probability of hit vs similarity with different parameters(m permutations&b bands).  
-![pics](probability of hit.png)
+![Image](http://github.com/MianWang123/Information-Retrieval/pics/probability of hit.png)
 For Step 9, I draw the distribution of Jaccard similarity in neareast duplicates.  
-![pics](Jaccard similarity distribution of nearest duplicates.png)
+![Image](http://github.com/MianWang123/Information-Retrieval/pics/Jaccard similarity distribution of nearest duplicates.png)
 For Step 11, if I input review 'Love is the most important thing', the system will find the most similar review in the database.
 
               ReviewerID: A3NTOYUJYVKOV7 
