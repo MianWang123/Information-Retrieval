@@ -220,8 +220,8 @@ if __name__=='__main__':
     print('Step 10 done!')
       
     # Step 11: input a review, find the most similar review in the database
-    # review = input('Please Input a Review: ')
-    review = 'Love is the most important thing.'
+    review = input('Please Input a Review: ')
+    #review = 'Love is the most important thing.'
     reviewer_id, review_text, similarity = find_similar(review)
     print(f'ReviewerID: {reviewer_id} \nReviewText: "{review_text}" \nJaccard Similarity: {similarity}')
     print('Step 11 done!')
