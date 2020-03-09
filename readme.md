@@ -21,13 +21,13 @@ The dataset can be found here https://drive.google.com/file/d/1UMAL2OULAEpdhlSUS
 
 ## Data Visualization
 
-For Step 4, I draw the distribution(histogram) of 10000 pairs of reviews' Jaccard distance.  
+For Step 4, I randomly picked 10000 pairs of reviews, and draw the distribution of their Jaccard distance, from which we can have a glimpse at how the whole AmazonReviews distinguish from each other.
 ![Image](https://github.com/MianWang123/Information-Retrieval/blob/master/pics/Jaccard%20distance%20of%2010000%20pairs.png)  
-For Step 5, I draw the graph of probability of hit vs similarity with different parameters(m permutations&b bands).  
-![Image](https://github.com/MianWang123/Information-Retrieval/tree/master/pics/probability of hit.png)  
-For Step 9, I draw the distribution of Jaccard similarity in neareast duplicates.  
+For Step 5, The graph of probability of hit vs similarity with different parameters is plot, so as to choose appropriate parameters, i.e. m permutations & b bands.  
+![Image](https://github.com/MianWang123/Information-Retrieval/blob/master/pics/Jaccard%20similarity%20distribution%20of%20nearest%20duplicates.png)  
+For Step 9, I draw the distribution of Jaccard similarity in neareast duplicates, we can see that their Jaccard Similarity is very high since they are all similar pairs.  
 ![Image](https://github.com/MianWang123/Information-Retrieval/tree/master/pics/Jaccard similarity distribution of nearest duplicates.png)  
-For Step 11, if I input review 'Love is the most important thing', the system will find the most similar review in the database.
+For Step 11, if the input review is 'Love is the most important thing', the most similar review in the database would be found (shown below).
 
               ReviewerID: A3NTOYUJYVKOV7 
               ReviewText: "cats seem love important thing good sits dish" 
