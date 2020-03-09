@@ -1,88 +1,33 @@
-# Project Title
+## Project Title
 
-One Paragraph of project description goes here
+Information Retrieval (Locally Sensitive Hashing)
+
+## Goal and Function
+
+The goal is to find similar pairs of reviews in the AmazonReviews dataset(108 Mb), also given any new review, this code will find the most similar one in the database. 
+The process involves data preprocess (get rid of stopwords and punctuations), K-shingles of reviews (K=5), locally sensitive hashing (m times permutation & min-hashing & divided by b bands), compute Jaccard distance (1 - Jaccard similarity), and find similar pairs of reviews.
 
 ## Getting Started
 
-These instructions will get you a copy of the project up and running on your local machine for development and testing purposes. See deployment for notes on how to deploy the project on a live system.
+The 'lsh.py' takes 16 minutes to run in total (via Google Colab).
+After completion of each step (11 steps in total), there would be a reminder. 
+In step 11, you can change the default input review to anything you want (string longer than 5) to search for similar review.
 
 ### Prerequisites
 
-What things you need to install the software and how to install them
+Put 'amazonReviews.json' in the same docment with 'lsh.py'. 
+The dataset can be found here https://drive.google.com/file/d/1UMAL2OULAEpdhlSUSgtUMy7ErxVuYNdR/view?usp=sharing
 
-```
-Give examples
-```
 
-### Installing
+## Data Visualization
 
-A step by step series of examples that tell you how to get a development env running
-
-Say what the step will be
-
-```
-Give the example
-```
-
-And repeat
-
-```
-until finished
-```
-
-End with an example of getting some data out of the system or using it for a little demo
-
-## Running the tests
-
-Explain how to run the automated tests for this system
-
-### Break down into end to end tests
-
-Explain what these tests test and why
-
-```
-Give an example
-```
-
-### And coding style tests
-
-Explain what these tests test and why
-
-```
-Give an example
-```
-
-## Deployment
-
-Add additional notes about how to deploy this on a live system
-
-## Built With
-
-* [Dropwizard](http://www.dropwizard.io/1.0.2/docs/) - The web framework used
-* [Maven](https://maven.apache.org/) - Dependency Management
-* [ROME](https://rometools.github.io/rome/) - Used to generate RSS Feeds
-
-## Contributing
-
-Please read [CONTRIBUTING.md](https://gist.github.com/PurpleBooth/b24679402957c63ec426) for details on our code of conduct, and the process for submitting pull requests to us.
-
-## Versioning
-
-We use [SemVer](http://semver.org/) for versioning. For the versions available, see the [tags on this repository](https://github.com/your/project/tags). 
-
-## Authors
-
-* **Billie Thompson** - *Initial work* - [PurpleBooth](https://github.com/PurpleBooth)
-
-See also the list of [contributors](https://github.com/your/project/contributors) who participated in this project.
-
-## License
-
-This project is licensed under the MIT License - see the [LICENSE.md](LICENSE.md) file for details
-
-## Acknowledgments
-
-* Hat tip to anyone whose code was used
-* Inspiration
-* etc
-
+For Step 4, I draw the distribution(histogram) of 10000 pairs of reviews' Jaccard distance.
+![Image 1](Jaccard distance of 10000 pairs.png)
+For Step 5, I draw the graph of probability of hit vs similarity with different parameters(m permutations&b bands).
+![Image 2](probability of hit.png)
+For Step 9, I draw the distribution of Jaccard similarity in neareast duplicates.
+![Image 3](Jaccard similarity distribution of nearest duplicates.png)
+For Step 11, if I input review 'Love is the most important thing', the system will find the most similar review in the database.
+              ReviewerID: A3NTOYUJYVKOV7 
+              ReviewText: "cats seem love important thing good sits dish" 
+              Jaccard Similarity: 0.4117647058823529
