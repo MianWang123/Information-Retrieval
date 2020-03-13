@@ -121,7 +121,7 @@ if __name__=='__main__':
     print('Step 1 done!')           
 
     
-    # Step 2: Do K-shingling of all Amazon reviews with self-defined function (K=5)
+    # Step 2: Do K-shingling on all Amazon reviews with self-defined function (K=5)
     shingles = []
     reviews['shingles'] = None
     for i in range(len(reviews)):
