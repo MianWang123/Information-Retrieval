@@ -26,11 +26,11 @@ The dataset can be found here https://drive.google.com/file/d/1UMAL2OULAEpdhlSUS
 ### Data Visualization
 
 For Step 4, I randomly picked 10000 pairs of reviews, and draw the distribution of their Jaccard distance, from which we can have a glimpse at how the whole AmazonReviews distinguish from each other.  
-<div align=center><img src="https://github.com/MianWang123/Information-Retrieval/blob/master/pics/Jaccard%20distance%20of%2010000%20pairs.png" width='270'/></div>  
+<div align=center><img src="https://github.com/MianWang123/Information-Retrieval/blob/master/pics/Jaccard%20distance%20of%2010000%20pairs.png"></div>  
 For Step 5, The graph of probability of hit vs similarity with different parameters is plotted here so as to choose appropriate parameters, i.e. m permutations & b bands.  
-<div align=center><img src="https://github.com/MianWang123/Information-Retrieval/blob/master/pics/probability%20of%20hit.png" width='270'/></div>  
+<div align=center><img src="https://github.com/MianWang123/Information-Retrieval/blob/master/pics/probability%20of%20hit.png"></div>  
 For Step 9, I draw the distribution of Jaccard similarity in neareast duplicates, we can see that their Jaccard Similarity are very high since they are all similar pairs.   
-<div align=center><img src="https://github.com/MianWang123/Information-Retrieval/blob/master/pics/Jaccard%20similarity%20distribution%20of%20nearest%20duplicates.png" width='270'/></div>  
+<div align=center><img src="https://github.com/MianWang123/Information-Retrieval/blob/master/pics/Jaccard%20similarity%20distribution%20of%20nearest%20duplicates.png"></div>  
 For Step 11, if the input review is 'Love is the most important thing', the most similar review in the database would be found, together with ReviewerID and Jaccard similarity, which is listed below.
 
               ReviewerID: A3NTOYUJYVKOV7 
