@@ -100,7 +100,9 @@ def find_similar(review):
   similar_idx = np.argmax(jaccard_sim)
   return reviews.loc[similar_idx]['reviewerID'], reviews.loc[similar_idx]['reviewText'], jaccard_sim[similar_idx]
 
+
 if __name__=='__main__':
+    # Step 0: Import dataset and define necessary set
     reviews_dataset = pd.read_json('amazonReviews.json',lines=True)
     reviews = reviews_dataset[['reviewerID','reviewText']]
     
@@ -111,13 +113,15 @@ if __name__=='__main__':
     other some such from no nor not only own same so than too very s t can will just don should now'
     stopwords = set(stopwords_str.split())
     punctuations = set([',','.','/','\'',';','[',']','(',')','~','<','>','?',':','\"','{','}','\\','|','`','-','!','@','#','$','%','^','&','*','=','+','-'])
-    
-    # Step 1: convert the text to lower case, and remove the punctuations & stopwords with self-defined function
+ 
+
+    # Step 1: Convert the text to lower case, and remove the punctuations & stopwords with self-defined function
     reviews.loc[:]['reviewText'] = reviews.loc[:]['reviewText'].apply(lambda x: str.lower(x))
     reviews.loc[:]['reviewText'] = reviews.loc[:]['reviewText'].apply(lambda x: preprocess(x))
     print('Step 1 done!')           
+
     
-    # Step 2: do K-shingling of all Amazon reviews with self-defined function (K=5)
+    # Step 2: Do K-shingling of all Amazon reviews with self-defined function (K=5)
     shingles = []
     reviews['shingles'] = None
     for i in range(len(reviews)):
@@ -131,12 +135,14 @@ if __name__=='__main__':
       all_shingles[sh] = i
     print('Step 2 done!')
 
-    # Step 3: remove the reviews with empty shingles and reset the index
+    
+    # Step 3: Remove the reviews with empty shingles and reset the index
     reviews = reviews.dropna(subset=['shingles']).reset_index(drop=True)
     reviews['indices'] = reviews.loc[:]['shingles'].apply(lambda x: indices(x))
     print('Step 3 done!')
-    
-    # Step 4: randomly pick 10000 pairs of reviews, plot histgram of their Jaccard distance
+ 
+
+    # Step 4: Randomly pick 10000 pairs of reviews, plot histgram of their Jaccard distance
     dis = J_dist(reviews['indices'], 10000)
     ave_dis = np.mean(dis)
     low_dis = min(dis)
@@ -148,8 +154,9 @@ if __name__=='__main__':
     plt.savefig('Jaccard distance of 10000 pairs.png')
     plt.show()
     print('Step 4 done!')
-    
-    # Step 5: plot the probability curve of lsh with different parameters (m permutations, b bands)
+  
+  
+    # Step 5: Plot the probability curve of lsh with different parameters (m permutations, b bands)
     m_candidates = {200,400,600}
     b_candidates = {20,40}
     s = np.arange(0,1,0.001)
@@ -167,23 +174,26 @@ if __name__=='__main__':
     plt.savefig('probability of hit.png')
     plt.show()
     print('Step 5 done!')
-    
-    # Step 6: choose appropriate parameters from the probability curve, and the prime to do lsh
+   
+  
+    # Step 6: Choose appropriate parameters from the probability curve, and the prime to do lsh
     m, b = 200, 20
     prime = len(all_shingles)
     while not is_prime(prime):
       prime += 1
     print('Step 6 done!')
-    
-    # Step 7: compute the signature matrix
+  
+  
+    # Step 7: Compute the signature matrix
     a_matrix = np.random.choice(range(1,prime+1),m).reshape(m,1) 
     b_matrix = np.random.choice(range(1,prime+1),m).reshape(m,1)
     sig_matrix = np.zeros((len(reviews),m), dtype=int)
     for i in range(len(reviews)):
       sig_matrix[i,:] = m_hashes(reviews.loc[i]['indices'], a_matrix, b_matrix, prime)
     print('Step 7 done!')
-    
-    # Step 8: do lsh to the signature matrix, and find duplicates with Jaccard similarity >= 0.8
+  
+  
+    # Step 8: Do lsh to the signature matrix, and find duplicates with Jaccard similarity >= 0.8
     similar_pairs = lsh(sig_matrix, b)
     sim = {}
     nearest_neigh = []
@@ -198,8 +208,9 @@ if __name__=='__main__':
           sim[(x,y)] = jaccard_sim
     print(f'The number of nearest duplicates: {len(nearest_dup)}')
     print('Step 8 done!')
-    
-    # Step 9: plot the distribution of Jaccard similarity of nearest duplicates
+   
+  
+    # Step 9: Plot the distribution of Jaccard similarity of nearest duplicates
     l = []
     for (x,y) in nearest_neigh:
       l.append(sim[(x,y)])
@@ -211,15 +222,17 @@ if __name__=='__main__':
     plt.savefig('Jaccard similarity distribution of nearest duplicates.png')
     plt.show()
     print('Step 9 done!')
-    
-    # Step 10: store all the nearest duplicates as csv file
+   
+  
+    # Step 10: Store all the nearest duplicates as csv file
     with open('nearest_duplicates.csv','w') as f:
       file = csv.writer(f)
       file.writerow(['review1','review2'])
       file.writerows(nearest_dup)
     print('Step 10 done!')
-      
-    # Step 11: input a review, find the most similar review in the database
+  
+  
+    # Step 11: Input a review, find the most similar review in the database
     review = input('Please Input a Review: ')
     #review = 'Love is the most important thing.'
     reviewer_id, review_text, similarity = find_similar(review)
