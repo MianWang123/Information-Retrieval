@@ -12,7 +12,7 @@ import itertools
 from collections import Counter
 
 def preprocess(s):
-  # get rid of punctuations and stopwords
+  # get rid of punctuations and stopwords & convert to lowercase
   stopwords_str = 'i me my myself we our ours ourselves you your yours yourself yourselves he him his himself she her hers herself it its \
   itself they them their theirs themselves what which who whom this that these those am is are was were be been being have has had having \
   do does did doing a an the and but if or because as until while of at by for with about against between into through during before after \
@@ -23,7 +23,7 @@ def preprocess(s):
 
   for p in punctuations:    
     s = s.replace(p,'')
-  s = ' '.join(word for word in s.split() if word not in stopwords)   
+  s = ' '.join(word for word in s.split() if word not in stopwords).lower() 
   return s
 
 def Kshingle(s, k):
@@ -114,8 +114,7 @@ if __name__=='__main__':
     reviews = reviews_dataset[['reviewerID','reviewText']]
     
 
-    # Step 1: Convert the text to lower case, and remove the punctuations & stopwords with self-defined function
-    reviews.loc[:]['reviewText'] = reviews.loc[:]['reviewText'].apply(lambda x: str.lower(x))
+    # Step 1: Remove punctuations and stopwords & Convert the text to lowercase
     reviews.loc[:]['reviewText'] = reviews.loc[:]['reviewText'].apply(lambda x: preprocess(x))
     print('Step 1 done!')           
 
