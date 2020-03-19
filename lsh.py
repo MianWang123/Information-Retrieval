@@ -13,11 +13,18 @@ from collections import Counter
 
 def preprocess(s):
   # get rid of punctuations and stopwords
-  new_s = ''
-  for c in s:    
-    new_s += c if c not in punctuations else ''
-  s1 = ' '.join(word for word in new_s.split() if word not in stopwords)   
-  return s1
+  stopwords_str = 'i me my myself we our ours ourselves you your yours yourself yourselves he him his himself she her hers herself it its \
+  itself they them their theirs themselves what which who whom this that these those am is are was were be been being have has had having \
+  do does did doing a an the and but if or because as until while of at by for with about against between into through during before after \
+  above below to up down in out on off over under again further then once here there when where why how all any both each few more most \
+  other some such from no nor not only own same so than too very s t can will just don should now'
+  stopwords = set(stopwords_str.split())
+  punctuations = ',./\';[]()~<>?:\"{}\\|`-!@#$%^&*=+-'
+
+  for p in punctuations:    
+    s = s.replace(p,'')
+  s = ' '.join(word for word in s.split() if word not in stopwords)   
+  return s
 
 def Kshingle(s, k):
   # divide the string s into k-shingles, return the list of shingles
@@ -106,14 +113,6 @@ if __name__=='__main__':
     reviews_dataset = pd.read_json('amazonReviews.json',lines=True)
     reviews = reviews_dataset[['reviewerID','reviewText']]
     
-    stopwords_str = 'i me my myself we our ours ourselves you your yours yourself yourselves he him his himself she her hers herself it its \
-    itself they them their theirs themselves what which who whom this that these those am is are was were be been being have has had having \
-    do does did doing a an the and but if or because as until while of at by for with about against between into through during before after \
-    above below to up down in out on off over under again further then once here there when where why how all any both each few more most \
-    other some such from no nor not only own same so than too very s t can will just don should now'
-    stopwords = set(stopwords_str.split())
-    punctuations = set([',','.','/','\'',';','[',']','(',')','~','<','>','?',':','\"','{','}','\\','|','`','-','!','@','#','$','%','^','&','*','=','+','-'])
- 
 
     # Step 1: Convert the text to lower case, and remove the punctuations & stopwords with self-defined function
     reviews.loc[:]['reviewText'] = reviews.loc[:]['reviewText'].apply(lambda x: str.lower(x))
